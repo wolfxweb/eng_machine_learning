@@ -25,13 +25,12 @@ def main():
   
         st.subheader("Visão Geral do Conjunto de Dados:")
         ## URL do data frame de desenvolvimento
-        url = "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/raw/dataset_kobe_dev.parquet"
+        url_df_dev = "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/raw/dataset_kobe_dev.parquet"
 
-# Importar o DataFrame a partir da URL
-        df = pd.read_parquet(url)
-
-# Exibir o DataFrame no Streamlit
-        st.write(df)
+        df_dev = pd.read_parquet(url_df_dev)
+        
+        st.write("Data frame antes do processamento")
+        st.write(df_dev)
    #     st.write(df_dev)
   
         ## URL do arquivo parquet no GitHub

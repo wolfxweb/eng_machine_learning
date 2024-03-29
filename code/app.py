@@ -10,10 +10,10 @@ def main():
     # Aba PreparacaoDados
     with st.sidebar:
         st.sidebar.title('Menu')
-        tab_selected = st.radio('Selecione uma aba:', ['Processamento', 'Treinamento', 'PipelineAplicacao','Apresentação'])
+        tab_selected = st.radio('Selecione uma aba:', ['Processamento de Dados', 'Treinamento', 'PipelineAplicacao','Apresentação'])
   
 
-    if tab_selected == 'PreparacaoDados':
+    if tab_selected == 'Processamento de Dados':
         st.header('Processamento de Dados')
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Preparação de Dados.')
   
@@ -38,7 +38,7 @@ def main():
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Pipeline de Aplicação.')
         # Código HTML do iframe
         iframe_code = """
-        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ6QufhOXcTmaqc2hgUJC2ACPLgR74Kh1j08fg40Zmzw5vLxgMCJFTndHp92sVMhg/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        
         """
 
         # Exibir o iframe

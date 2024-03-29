@@ -23,3 +23,5 @@ TestResults.xml
 virtual
 
 virtual/bin/activate
+mlruns/
+mlruns.db

@@ -14,7 +14,7 @@ def main():
   
 
     if tab_selected == 'Processamento de Dados':
-        st.header('Processamento de Dados')
+        st.header('Preparação de Dados')
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Preparação de Dados.')
   
   
@@ -38,7 +38,7 @@ def main():
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Pipeline de Aplicação.')
         # Código HTML do iframe
         iframe_code = """
-        
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQXW0aUksH1cjl28nhkk7sh6ITmPdMV1bYxnCPrfQFeC9WDBsHfR2lQkjB2Be4la0R9PcmvIsoLHFUF/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
         """
 
         # Exibir o iframe

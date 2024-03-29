@@ -28,7 +28,8 @@ def main():
         url_df_dev = "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/raw/dataset_kobe_dev.parquet"
 
         df_dev = pd.read_parquet(url_df_dev)
-        
+        st.write("Informações do data frame")
+        st.write(df_dev.info())
         st.write("Data frame antes do processamento")
         st.write(df_dev)
    #     st.write(df_dev)

@@ -10,7 +10,7 @@ def main():
     # Aba PreparacaoDados
     with st.sidebar:
         st.sidebar.title('Menu')
-        tab_selected = st.radio('Selecione uma aba:', ['Processamento de Dados', 'Treinamento', 'PipelineAplicacao','Apresentação'])
+        tab_selected = st.radio('Selecione uma aba:', ['Processamento', 'Treinamento', 'PipelineAplicacao','Apresentação'])
   
 
     if tab_selected == 'PreparacaoDados':

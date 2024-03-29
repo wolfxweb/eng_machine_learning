@@ -32,11 +32,6 @@ def main():
     elif tab_selected == 'Apresentação':
         st.header('Apresentação')
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Pipeline de Aplicação.')
-        # URL do arquivo PDF hospedado no OneDrive
-        pdf_url = "https://1drv.ms/p/s!AtgitvPT0788g_lFaG6r4kMmh8Jdqg?e=QG7SK4"
-
-        # Exibir o PDF usando um iframe
-        st.write(f'<iframe src="{pdf_url}" width="700" height="500"></iframe>', unsafe_allow_html=True)
 
 
 

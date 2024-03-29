@@ -15,9 +15,10 @@ def main():
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Preparação de Dados.')
       
         # Caminho para a imagem
-        image_path = "./histograma.png"
+        image_url = "https://github.com/wolfxweb/eng_machine_learning/blob/main/docs/artefatos/graficos/pre_processamento/boxplot_faixa_dinamica.png"
+
         # Exibe a imagem
-     #   st.image(image_path, caption='Exemplo de imagem na preparação de dados', use_column_width=True)
+        st.image(image_url, caption='Exemplo de imagem na preparação de dados', use_column_width=True)
 
     # Aba Treinamento
     elif tab_selected == 'Treinamento':

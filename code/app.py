@@ -34,7 +34,7 @@ def main():
         df_dev = pq.read_table(buffer).to_pandas()
 
         # Exibe o DataFrame
-        st.write(df)
+        st.write(df_dev)
   
         ## URL do arquivo parquet no GitHub
         url = 'https://github.com/wolfxweb/eng_machine_learning/raw/main/data/processed/data_filtered.parquet'

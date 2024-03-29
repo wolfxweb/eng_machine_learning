@@ -29,7 +29,7 @@ def main():
 
         df_dev = pd.read_parquet(url_df_dev)
         st.write("Informações do data frame")
-        st.write(df_dev.info())
+        st.write(df_dev.describe())
         st.write("Data frame antes do processamento")
         st.write(df_dev)
    #     st.write(df_dev)

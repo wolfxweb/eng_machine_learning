@@ -7,3 +7,4 @@ prophet
 streamlit-extras
 pycaret
 mlflow
+seaborn

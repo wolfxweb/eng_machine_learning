@@ -23,9 +23,19 @@ def main():
         st.header('Preparação de Dados')
         st.write('Uma exploração de dados é uma etapa crucial em qualquer projeto de análise de dados ou aprendizado de máquina. Durante essa fase, vamos examina o conjunto de dados para entender sua estrutura, características e comportamentos subjacentes. ')
   
-  # URL do arquivo CSV no GitHub
-        url = 'https://raw.githubusercontent.com/seu_usuario/seu_repositório/seu_caminho/seu_arquivo.csv'
+        st.subheader("Visão Geral do Conjunto de Dados:")
+        ## URL do data frame de desenvolvimento
+        url_df_dev = 'https://github.com/wolfxweb/eng_machine_learning/blob/main/data/raw/dataset_kobe_dev.parquet'
+  
+        response = requests.get(url_df_dev)
+        buffer = io.BytesIO(response.content)
 
+        # Lê o arquivo parquet em um DataFrame
+        df_dev = pq.read_table(buffer).to_pandas()
+
+        # Exibe o DataFrame
+        st.write(df)
+  
         ## URL do arquivo parquet no GitHub
         url = 'https://github.com/wolfxweb/eng_machine_learning/raw/main/data/processed/data_filtered.parquet'
 

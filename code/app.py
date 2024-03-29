@@ -21,7 +21,7 @@ def main():
 
     if tab_selected == 'Processamento de Dados':
         st.header('Preparação de Dados')
-        st.write('Este é um exemplo de aplicação Streamlit com a aba de Preparação de Dados.')
+        st.write('Uma exploração de dados é uma etapa crucial em qualquer projeto de análise de dados ou aprendizado de máquina. Durante essa fase, vamos examina o conjunto de dados para entender sua estrutura, características e comportamentos subjacentes. ')
   
   # URL do arquivo CSV no GitHub
         url = 'https://raw.githubusercontent.com/seu_usuario/seu_repositório/seu_caminho/seu_arquivo.csv'

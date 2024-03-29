@@ -14,7 +14,7 @@ def main():
         st.header('Preparação de Dados')
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Preparação de Dados.')
       # URL direta da imagem hospedada no GitHub
-        image_url = "https://github.com/wolfxweb/eng_machine_learning/blob/f0dd74b77a240c522383b7ef104bce11d61ae17c/docs/artefatos/graficos/pre_processamento/boxplot_faixa_dinamica.png"
+        image_url = "https://github.com/wolfxweb/eng_machine_learning/raw/f0dd74b77a240c522383b7ef104bce11d61ae17c/docs/artefatos/graficos/pre_processamento/boxplot_faixa_dinamica.png"
 
         # Exibir a imagem no Streamlit
         st.image(image_url, caption='Exemplo de imagem na preparação de dados', use_column_width=True)

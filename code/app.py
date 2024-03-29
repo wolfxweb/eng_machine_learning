@@ -15,7 +15,7 @@ def main():
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Preparação de Dados.')
       
         # Caminho para a imagem
-        image_path = "histograma.png"
+        image_path = "/histograma.png"
         # Exibe a imagem
         st.image(image_path, caption='Exemplo de imagem na preparação de dados', use_column_width=True)
 

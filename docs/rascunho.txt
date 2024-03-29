@@ -1,0 +1,10 @@
+No decorrer do projeto serão criados alguns artefatos e metricas
+
+Na etapa de pré-precessamento será criado alguns artefatos.
+
+Graficos:
+ Gráfico de Box Plot - Faixa Dinâmica das Variáveis, este grafico é para analizarmos a dispersão dos dados, identificar outliers e comparar distribuições entre diferentes grupos ou variáveis.
+ Ele permite visualizar de forma clara a presença de valores extremos, a simetria dos dados e a sua concentração em torno da mediana.
+ Histograma das Variáveis
+ Matriz de Correlação
+ Matriz de Gráficos de Dispersão

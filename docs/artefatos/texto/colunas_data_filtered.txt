@@ -1,0 +1,13 @@
+<class 'pandas.core.frame.DataFrame'>
+Index: 20285 entries, 1 to 24270
+Data columns (total 6 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   lat                20285 non-null  float64
+ 1   minutes_remaining  20285 non-null  int64  
+ 2   period             20285 non-null  int64  
+ 3   playoffs           20285 non-null  int64  
+ 4   shot_distance      20285 non-null  int64  
+ 5   shot_made_flag     20285 non-null  float64
+dtypes: float64(2), int64(4)
+memory usage: 1.1 MB

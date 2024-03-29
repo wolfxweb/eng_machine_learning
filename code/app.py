@@ -10,11 +10,11 @@ def main():
     # Aba PreparacaoDados
     with st.sidebar:
         st.sidebar.title('Menu')
-        tab_selected = st.radio('Selecione uma aba:', ['PreparacaoDados', 'Treinamento', 'PipelineAplicacao','Apresentação'])
+        tab_selected = st.radio('Selecione uma aba:', ['Processamento de Dados', 'Treinamento', 'PipelineAplicacao','Apresentação'])
   
 
     if tab_selected == 'PreparacaoDados':
-        st.header('Preparação de Dados')
+        st.header('Processamento de Dados')
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Preparação de Dados.')
   
   

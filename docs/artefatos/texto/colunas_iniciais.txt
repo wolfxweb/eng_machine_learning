@@ -1,0 +1,32 @@
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 24271 entries, 0 to 24270
+Data columns (total 25 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   action_type         24271 non-null  object 
+ 1   combined_shot_type  24271 non-null  object 
+ 2   game_event_id       24271 non-null  int64  
+ 3   game_id             24271 non-null  int64  
+ 4   lat                 24271 non-null  float64
+ 5   loc_x               24271 non-null  int64  
+ 6   loc_y               24271 non-null  int64  
+ 7   lon                 24271 non-null  float64
+ 8   minutes_remaining   24271 non-null  int64  
+ 9   period              24271 non-null  int64  
+ 10  playoffs            24271 non-null  int64  
+ 11  season              24271 non-null  object 
+ 12  seconds_remaining   24271 non-null  int64  
+ 13  shot_distance       24271 non-null  int64  
+ 14  shot_made_flag      20285 non-null  float64
+ 15  shot_type           24271 non-null  object 
+ 16  shot_zone_area      24271 non-null  object 
+ 17  shot_zone_basic     24271 non-null  object 
+ 18  shot_zone_range     24271 non-null  object 
+ 19  team_id             24271 non-null  int64  
+ 20  team_name           24271 non-null  object 
+ 21  game_date           24271 non-null  object 
+ 22  matchup             24271 non-null  object 
+ 23  opponent            24271 non-null  object 
+ 24  shot_id             24271 non-null  int64  
+dtypes: float64(3), int64(11), object(11)
+memory usage: 4.6+ MB

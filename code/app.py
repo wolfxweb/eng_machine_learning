@@ -17,7 +17,7 @@ def main():
         # Caminho para a imagem
         image_path = "./histograma.png"
         # Exibe a imagem
-        st.image(image_path, caption='Exemplo de imagem na preparação de dados', use_column_width=True)
+     #   st.image(image_path, caption='Exemplo de imagem na preparação de dados', use_column_width=True)
 
     # Aba Treinamento
     elif tab_selected == 'Treinamento':

@@ -29,19 +29,19 @@ def main():
 
         df_dev = pd.read_parquet(url_df_dev)
         st.subheader("Análise estatística descritiva")
-        info_describe ="""
-         Nesta analise estamos utilizando a função describre()
-         Ela calcula várias estatísticas descritivas, incluindo:
-         Contagem: o número de observações não nulas em cada coluna.
-         Média: a média aritmética dos valores em cada coluna.
-         Desvio padrão: uma medida de dispersão dos valores em cada coluna em relação à média.
-         Mínimo: o valor mínimo em cada coluna.
-         25º percentil (Q1): o valor abaixo do qual 25% dos dados caem em cada coluna.
-         50º percentil (mediana ou Q2): o valor abaixo do qual 50% dos dados caem em cada coluna.
-         75º percentil (Q3): o valor abaixo do qual 75% dos dados caem em cada coluna.
-         Máximo: o valor máximo em cada coluna.
+        info_describe = """
+            Nesta análise estamos utilizando a função describe().
+            Ela calcula várias estatísticas descritivas, incluindo:
+            - Contagem: o número de observações não nulas em cada coluna.
+            - Média: a média aritmética dos valores em cada coluna.
+            - Desvio padrão: uma medida de dispersão dos valores em cada coluna em relação à média.
+            - Mínimo: o valor mínimo em cada coluna.
+            - 25º percentil (Q1): o valor abaixo do qual 25% dos dados caem em cada coluna.
+            - 50º percentil (mediana ou Q2): o valor abaixo do qual 50% dos dados caem em cada coluna.
+            - 75º percentil (Q3): o valor abaixo do qual 75% dos dados caem em cada coluna.
+            - Máximo: o valor máximo em cada coluna.
         """
-        st.white(info_describe)
+        st.write(info_describe)
         
         st.write(df_dev.describe())
         st.write("Data frame antes do processamento")

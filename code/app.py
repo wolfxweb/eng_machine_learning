@@ -69,7 +69,7 @@ def main():
         st.text(f"Quantidade de linhas: {df_dev.shape[0]}, Quantidade de colunas: {df_dev.shape[1]}")
        
         st.write("Tipos de dados das colunas")
-        st.write(df_dev.info())
+        st.write(print(df_dev.info()))
         
         
         

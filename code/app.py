@@ -124,8 +124,17 @@ def main():
 
 
         st.subheader("Faixa Dinâmica das variaveis")
+        # URL do arquivo no GitHub
+        url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/faixa_dinamica.txt"
+        getTextGitHub(url) 
         boxplot_faixa_dinamica = f"{url_grafico}/boxplot_faixa_dinamica.png"
         st.image(boxplot_faixa_dinamica, caption='Gráfico Box Plot - Faixa Dinâmica das variaveis', use_column_width=True)
+        
+
+
+
+
+
 
     # Aba Treinamento
     elif tab_selected == 'Treinamento':

@@ -43,7 +43,7 @@ def main():
         """
         st.write(info_describe)
         info_describe_anlise = """
-            Analizando o resultado 
+            Analizando o resultado mostrado na tabela com a estatística descritiva
             - count: Todas as colunas têm 24.271 observações válidas, o que indica que não há valores nulos em nosso conjunto de dados.
             - mean: A média aritmética dos valores em cada coluna fornece uma ideia do valor médio de cada variável. Por exemplo, a média de game_event_id é aproximadamente 240.57.
             - std: O desvio padrão é uma medida de dispersão dos valores em relação à média. Quanto maior o desvio padrão, mais dispersos estão os dados em torno da média. Por exemplo, o desvio padrão de game_event_id é aproximadamente 148.51, indicando uma certa variabilidade nos valores dessa variável.
@@ -51,7 +51,8 @@ def main():
             - 25% (Q1), 50% (Q2), 75% (Q3): Os percentis fornecem informações sobre a distribuição dos dados. Por exemplo, 25% das observações de game_event_id são menores que 102, 50% são menores que 244 (mediana) e 75% são menores que 355.
             - max: O valor máximo em cada coluna indica o maior valor observado para cada variável. Por exemplo, o valor máximo de game_event_id é 659.
         """
-        st.write(info_describe_anlise) 
+        st.write(info_describe_anlise)
+        st.write("Tabela com a estatística descritiva.")
         st.write(df_dev.describe())
         st.write("Data frame antes do processamento")
         st.write(df_dev)

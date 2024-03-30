@@ -24,7 +24,7 @@ def main():
     #url para pegar os artefatos que estão no github
     url_github = "https://github.com/wolfxweb/eng_machine_learning/raw/f0dd74b77a240c522383b7ef104bce11d61ae17c/docs/artefatos/"
     url_grafico = f"{url_github}/graficos/pre_processamento"
-    
+    github_image_url = "https://github.com/wolfxweb/eng_machine_learning/raw/main/docs/artefatos/graficos/pre_processamento/"
     # Aba PreparacaoDados
     with st.sidebar:
         st.sidebar.title('Menu')
@@ -89,11 +89,13 @@ def main():
            Essas análises são essenciais para entender melhor o conjunto de dados e informar a construção de modelos de previsão ou outras análises específicas.
          """
         st.markdown(colunas_iniciais_text)
+        st.write("Tabela com a estatística descritiva") 
         url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_iniciais.txt"
         getTextGitHub(url) 
        
         st.subheader("Conteúdo do arquivo colunas_data_filtered.txt")
-        url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_data_filtered.txt"
+     #   url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_data_filtered.txt"
+        url= "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_data_filtered.txt"
         colunas_data_filtered_text = """
            O DataFrame contém informações detalhadas sobre arremessos em jogos de basquete, com 20.285 entradas e 6 colunas.
            As colunas representam diferentes aspectos de cada arremesso, incluindo a posição (lat), tempo restante no jogo (minutes_remaining), período do jogo (period), indicação de se é playoff ou não (playoffs), distância do arremesso (shot_distance) e se o arremesso foi bem-sucedido ou não (shot_made_flag). 
@@ -102,8 +104,7 @@ def main():
         st.markdown(colunas_data_filtered_text)
         getTextGitHub(url) 
      
-        st.subheader("Tamanho do conjunto de dados depois do pré-processamento (data_filtered.parquet)")
-           
+     
         # URL do DataFrame filtrado
         url_df_dev = "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/processed/data_filtered.parquet"
         df_filtred = pd.read_parquet(url_df_dev) 
@@ -124,18 +125,69 @@ def main():
 
 
         st.subheader("Faixa Dinâmica das variaveis")
-        # URL do arquivo no GitHub
+        data_filtered_text = """
+           Resultado da Análise Estatística Descritiva
+          Analizando o resultado mostrado na tabela com a estatística descritiva do data set data_filtred:
+          - **Latitude (lat):** A média da latitude é de aproximadamente 0.544, com um desvio padrão relativamente pequeno de 0.067, indicando que os arremessos tendem a ocorrer em uma faixa estreita de latitudes.
+          - **Longitude (lon):** A média da longitude é de aproximadamente 0.438, com um desvio padrão relativamente pequeno de 0.066, indicando que os arremessos tendem a ocorrer em uma faixa estreita de longitudes.
+          - **Minutos Restantes (minutes_remaining):** A média de minutos restantes é de cerca de 11.0, com um desvio padrão de aproximadamente 0.0. Isso sugere uma distribuição variada do tempo restante nos arremessos.
+          - **Período (period):** A média do período é de cerca de 6.0, com a maioria dos arremessos ocorrendo no período 6. O período mínimo é 6 e o máximo é 6.
+          - **Playoffs (playoffs):** A média de playoffs indica que todos os arremessos ocorrem durante os playoffs, pois o valor médio é 1. Isso sugere que os arremessos estão concentrados nos jogos dos playoffs.
+          - **Distância do Arremesso (shot_distance):** A média da distância do arremesso é de aproximadamente 50.0 pés, com um desvio padrão de 0.0 pés. Isso indica que a distância dos arremessos é consistente.
+          - **Flag de Arremesso Convertido (shot_made_flag):** A média do indicador de arremesso bem-sucedido é de aproximadamente 1.0, o que sugere que todos os arremessos foram bem-sucedidos. Isso é apoiado pelo fato de que o valor mínimo é 1 e o valor máximo é 1, indicando que a coluna contém valores binários representando se um arremesso foi ou não bem-sucedido.
+        """
+        st.markdown(data_filtered_text)
+       
         url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/faixa_dinamica.txt"
         getTextGitHub(url) 
-        boxplot_faixa_dinamica = f"{url_grafico}/boxplot_faixa_dinamica.png"
+ 
+        boxplot_faixa_dinamica = f"{github_image_url}/boxplot_faixa_dinamica.png"
         st.image(boxplot_faixa_dinamica, caption='Gráfico Box Plot - Faixa Dinâmica das variaveis', use_column_width=True)
+      
+     
+        st.subheader("Matriz de correlação") 
+        matriz_text = """
+          Uma matriz de correlação é uma tabela que mostra os coeficientes de correlação entre várias variáveis. Cada célula na tabela representa o coeficiente de correlação entre duas variáveis. O coeficiente de correlação quantifica o grau de relação linear entre duas variáveis e varia de -1 a 1. 
+          - Um valor de 1 indica uma correlação perfeita positiva, o que significa que as duas variáveis têm uma relação linear positiva perfeita. Isso significa que quando uma variável aumenta, a outra também aumenta na mesma proporção.
+          - Um valor de -1 indica uma correlação perfeita negativa, o que significa que as duas variáveis têm uma relação linear negativa perfeita. Isso significa que quando uma variável aumenta, a outra diminui na mesma proporção.
+          - Um valor de 0 indica ausência de correlação linear entre as variáveis. Isso significa que as variáveis ​​não têm uma relação linear clara entre si.
+        """
+        st.markdown(matriz_text)
+        boxplot_faixa_dinamica = f"{github_image_url}/matriz_correlacao.png"
+        st.image(boxplot_faixa_dinamica, caption='Matriz de correlação', use_column_width=True)
         
-
-
-
-
-
-
+        
+        
+        st.subheader("Matriz de Dispersão")
+        matriz_dispersao_text = """
+         Essa matriz é útil para identificar padrões de correlação, tendências e possíveis associações entre as variáveis em um conjunto de dados. Cada gráfico de dispersão na matriz mostra como duas variáveis estão relacionadas entre si, permitindo uma rápida visualização das relações lineares ou não lineares.
+         Ao examinar uma matriz de dispersão, aqui estão algumas interpretações comuns:
+          - Padrões de correlação: Se os pontos em um gráfico de dispersão mostrarem uma tendência clara, isso pode indicar uma correlação entre as variáveis. Por exemplo, se os pontos formarem uma linha diagonal ascendente, isso sugere uma correlação positiva entre as duas variáveis.
+          - Distribuições marginais: Além dos gráficos de dispersão, a matriz de dispersão também exibe as distribuições marginais de cada variável ao longo da diagonal principal. Isso permite verificar as distribuições univariadas das variáveis.
+          - Identificação de outliers: A matriz de dispersão pode ajudar a identificar outliers ou valores extremos em um conjunto de dados. Pontos que estão longe da tendência geral nos gráficos de dispersão podem ser considerados outliers.
+          - Multicolinearidade: Ao examinar os gráficos de dispersão, é possível identificar multicolinearidade, que é a presença de correlações altas entre duas ou mais variáveis independentes. Isso é importante na construção de modelos preditivos, pois pode afetar a interpretação dos coeficientes de regressão.
+        """
+        st.markdown(matriz_dispersao_text)             
+        boxplot_faixa_dinamica = f"{github_image_url}/scatter_matrix.png"
+        st.image(boxplot_faixa_dinamica, caption='Matriz de Dispersão', use_column_width=True)
+        
+        
+        st.subheader("Histograma  das variaveis")
+        histograma_text = """
+            Um histograma é um gráfico de barras que representa a distribuição de uma variável quantitativa. Ele divide os dados em intervalos chamados de "bins" e conta quantas observações caem em cada bin. Essas contagens são então representadas graficamente como barras, onde a altura de cada barra indica a frequência ou a densidade das observações naquele bin. 
+            Ao interpretar um histograma, aqui estão algumas informações importantes que podemos extrair:
+            - Forma da distribuição: A forma geral do histograma fornece informações sobre a distribuição dos dados. Por exemplo, uma distribuição normal terá uma forma de sino, enquanto uma distribuição assimétrica pode ter uma cauda longa em uma direção.
+            - Centralidade: O centro da distribuição pode ser identificado observando onde a maioria das observações está concentrada ao longo do eixo horizontal. Isso nos dá uma ideia da média ou da mediana dos dados.
+            - Dispersão: A dispersão dos dados pode ser inferida observando a largura e a altura das barras no histograma. Uma distribuição mais dispersa terá barras mais largas e mais curtas, enquanto uma distribuição mais concentrada terá barras mais estreitas e mais altas.
+            - Outliers: Observações incomuns ou outliers podem ser identificados como valores que se destacam significativamente do restante da distribuição. Esses valores aparecerão como barras solitárias ou isoladas nos extremos do histograma.
+            - Simetria e assimetria: A simetria da distribuição pode ser observada visualmente no histograma. Distribuições simétricas terão barras distribuídas uniformemente em ambos os lados da média, enquanto distribuições assimétricas terão barras mais concentradas em um lado.
+        """
+        st.markdown(histograma_text)   
+        
+        boxplot_faixa_dinamica = f"{github_image_url}/histograma.png"
+        st.image(boxplot_faixa_dinamica, caption='Histograma  das variaveis', use_column_width=True) 
+      
+      
     # Aba Treinamento
     elif tab_selected == 'Treinamento':
         st.header('Treinamento')

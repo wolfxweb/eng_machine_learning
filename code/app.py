@@ -6,6 +6,18 @@ import pyarrow.parquet as pq
 import io
 import requests
 
+def getTextGitHub(url):
+    # Realizar uma solicitação HTTP para obter o conteúdo do arquivo
+    response = requests.get(url)
+    # Verificar se a solicitação foi bem-sucedida
+    if response.status_code == 200:
+        # Exibir o conteúdo do arquivo
+        content = response.text
+        st.text_area("Conteúdo do DataFrame:", content, height=400)
+    else:
+        st.error(f"Erro ao obter o arquivo: {response.status_code}")
+      
+
 
 def main():
     st.title('Dashboard')
@@ -41,7 +53,7 @@ def main():
             - 75º percentil (Q3): o valor abaixo do qual 75% dos dados caem em cada coluna.
             - Máximo: o valor máximo em cada coluna.
         """
-        st.text(info_describe)
+        st.markdown(info_describe)
         info_describe_anlise = """
             Analizando o resultado mostrado na tabela com a estatística descritiva
             - count: Todas as colunas têm 24.271 observações válidas, o que indica que não há valores nulos em nosso conjunto de dados.
@@ -52,14 +64,14 @@ def main():
             - max: O valor máximo em cada coluna indica o maior valor observado para cada variável. Por exemplo, o valor máximo de game_event_id é 659.
         """
     
-        st.text(info_describe_anlise)
+        st.markdown(info_describe_anlise)
      
         st.subheader("Valores Ausentes")
         info_valores_ausentes = """
             Com base na análise do resultado da tabela com a estatítica descritiva, podemos observar que todas as colunas têm a mesma contagem de observações, que é 24.271. 
             Isso indica que não há valores nulos ou faltantes neste conjunto de dados, pois todas as colunas possuem o mesmo número de observações não nulas.
         """
-        st.text(info_valores_ausentes)
+        st.markdown(info_valores_ausentes)
         
    
         st.write("Tabela com a estatística descritiva")
@@ -68,31 +80,52 @@ def main():
         st.subheader("Tamanho do conjunto de dados inicial")
         st.text(f"Quantidade de linhas: {df_dev.shape[0]}, Quantidade de colunas: {df_dev.shape[1]}")
        
-        st.write("Tipos de dados das colunas")
-        st.write(print(df_dev.info()))
-        
-        
-        
-      #  st.write("Data frame antes do processamento")
-     #   st.write(df_dev)
-   #     st.write(df_dev)
-  
-        ## URL do arquivo parquet no GitHub
-     #   url = 'https://github.com/wolfxweb/eng_machine_learning/raw/main/data/processed/data_filtered.parquet'
+        st.subheader("Conteúdo do arquivo colunas_iniciais.txt")
+        colunas_iniciais_text = """
+           Em resumo, o DataFrame fornecido contém informações sobre arremessos em jogos de basquete, com 24.271 entradas e 25 colunas.
+           A maioria das colunas são numéricas, mas também há colunas categóricas e algumas com valores nulos. 
+           A coluna `shot_made_flag` provavelmente representa o alvo para previsão, indicando se o arremesso foi bem-sucedido ou não.
+           Análises adicionais podem ser realizadas para explorar tendências temporais, relações entre variáveis e distribuição de arremessos bem-sucedidos em diferentes áreas do campo. 
+           Essas análises são essenciais para entender melhor o conjunto de dados e informar a construção de modelos de previsão ou outras análises específicas.
+         """
+        st.markdown(colunas_iniciais_text)
+        url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_iniciais.txt"
+        getTextGitHub(url) 
+       
+        st.subheader("Conteúdo do arquivo colunas_data_filtered.txt")
+        url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_data_filtered.txt"
+        colunas_data_filtered_text = """
+           O DataFrame contém informações detalhadas sobre arremessos em jogos de basquete, com 20.285 entradas e 6 colunas.
+           As colunas representam diferentes aspectos de cada arremesso, incluindo a posição (lat), tempo restante no jogo (minutes_remaining), período do jogo (period), indicação de se é playoff ou não (playoffs), distância do arremesso (shot_distance) e se o arremesso foi bem-sucedido ou não (shot_made_flag). 
+           Todas as colunas têm dados não nulos, o que indica que não há necessidade de lidar com valores ausentes.
+         """
+        st.markdown(colunas_data_filtered_text)
+        getTextGitHub(url) 
+     
+        st.subheader("Tamanho do conjunto de dados depois do pré-processamento (data_filtered.parquet)")
+           
+        # URL do DataFrame filtrado
+        url_df_dev = "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/processed/data_filtered.parquet"
+        df_filtred = pd.read_parquet(url_df_dev) 
+        st.text(f"Quantidade de linhas: {df_filtred.shape[0]}, Quantidade de colunas: {df_filtred.shape[1]}")
+       
+        st.subheader("Tabela com a estatística descritiva  (data_filtered.parquet)")
+        data_filtered_text = """
+           Analizando o resultado mostrado na tabela com a estatística descritiva do data set data_filtred       
+            - lat (Latitude):** A média da latitude é de aproximadamente 33.98, com um desvio padrão relativamente pequeno de 0.066, indicando que os arremessos tendem a ocorrer em uma faixa estreita de latitudes.
+            - minutes_remaining (Minutos Restantes):** A média de minutos restantes é de cerca de 5.10, com um desvio padrão de aproximadamente 3.42. Isso sugere uma distribuição variada do tempo restante nos arremessos.
+            - period (Período):** A média do período é de cerca de 2.47, com a maioria dos arremessos ocorrendo nos períodos 1 a 3 (50% dos dados estão nesse intervalo). O período mínimo é 1 e o máximo é 7.
+            - playoffs (Playoffs):** A média de playoffs indica que apenas cerca de 14.87% dos arremessos ocorrem durante os playoffs, pois o valor médio é 0. Isso sugere que a maioria dos arremessos é feita durante os jogos regulares da temporada.
+            - shot_distance (Distância do Arremesso):** A média da distância do arremesso é de aproximadamente 10.22 pés, com um desvio padrão de 7.56 pés. Isso indica uma ampla variação nas distâncias dos arremessos, com alguns arremessos muito próximos da cesta e outros a uma distância significativa.
+            - shot_made_flag (Indicador de Arremesso Bem-Sucedido):** A média do indicador de arremesso bem-sucedido é de aproximadamente 0.48, o que sugere que aproximadamente metade dos arremessos foram bem-sucedidos. Isso é apoiado pelo fato de que o valor mínimo é 0 e o valor máximo é 1, indicando que a coluna contém valores binários representando se um arremesso foi ou não bem-sucedido.
+          """
+        st.markdown(data_filtered_text)
+        st.write(df_filtred.describe()) 
 
-        # Baixa o conteúdo do arquivo parquet
-     #   response = requests.get(url)
-      #  buffer = io.BytesIO(response.content)
 
-        # Lê o arquivo parquet em um DataFrame
-      #  df = pq.read_table(buffer).to_pandas()
-
-        # Exibe o DataFrame
-      #  st.write(df)
-  
-      #  boxplot_faixa_dinamica = f"{url_grafico}/boxplot_faixa_dinamica.png"
-        # Exibir a imagem no Streamlit
-      #  st.image(boxplot_faixa_dinamica, caption='Exemplo de imagem na preparação de dados', use_column_width=True)
+        st.subheader("Faixa Dinâmica das variaveis")
+        boxplot_faixa_dinamica = f"{url_grafico}/boxplot_faixa_dinamica.png"
+        st.image(boxplot_faixa_dinamica, caption='Gráfico Box Plot - Faixa Dinâmica das variaveis', use_column_width=True)
 
     # Aba Treinamento
     elif tab_selected == 'Treinamento':

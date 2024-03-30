@@ -1,0 +1,6 @@
+lat,0.5449999999999946
+minutes_remaining,11.0
+period,6.0
+playoffs,1.0
+shot_distance,50.0
+shot_made_flag,1.0

@@ -56,8 +56,7 @@ def main():
         st.write(df_dev.describe())
         
         st.subheader("Tamanho do conjunto de dados inicial")
-        st.write(f"Quantidade de linhas {df_dev.shape[0]}")
-        st.write(f"Quantidade de colunas {df_dev.shape[1]}") 
+        st.text(f"Quantidade de linhas: {df_dev.shape[0]}, Quantidade de colunas: {df_dev.shape[1]}")
         
         
         

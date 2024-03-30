@@ -1,4 +1,5 @@
 lat,0.5449999999999946
+lon,0.4379999999999882
 minutes_remaining,11.0
 period,6.0
 playoffs,1.0

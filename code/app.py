@@ -56,7 +56,7 @@ def main():
         st.write(df_dev.describe())
         
         st.subheader("Tamanho do conjunto de dados")
-        st.write(df_dev.shape()) 
+        st.write(df_dev.shape) 
       #  st.write("Data frame antes do processamento")
      #   st.write(df_dev)
    #     st.write(df_dev)

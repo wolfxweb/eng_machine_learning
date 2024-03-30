@@ -1,4 +1,4 @@
-#streamlit run app.py --server.port 8501
+# streamlit run app.py --server.port 8501
 import streamlit as st
 
 import pandas as pd
@@ -16,12 +16,11 @@ def getTextGitHub(url):
         st.text_area("Conteúdo do DataFrame:", content, height=400)
     else:
         st.error(f"Erro ao obter o arquivo: {response.status_code}")
-      
 
 
 def main():
     st.title('Dashboard')
-    #url para pegar os artefatos que estão no github
+    # url para pegar os artefatos que estão no github
     url_github = "https://github.com/wolfxweb/eng_machine_learning/raw/f0dd74b77a240c522383b7ef104bce11d61ae17c/docs/artefatos/"
     url_grafico = f"{url_github}/graficos/pre_processamento"
     github_image_url = "https://github.com/wolfxweb/eng_machine_learning/raw/main/docs/artefatos/graficos/pre_processamento/"
@@ -29,15 +28,15 @@ def main():
     with st.sidebar:
         st.sidebar.title('Menu')
         tab_selected = st.radio('Selecione uma aba:', ['Processamento de Dados', 'Treinamento', 'PipelineAplicacao','Apresentação'])
-  
 
     if tab_selected == 'Processamento de Dados':
         st.header('Preparação de Dados')
         st.write('Uma exploração de dados é uma etapa crucial em qualquer projeto de análise de dados ou aprendizado de máquina. Durante essa fase, vamos examina o conjunto de dados para entender sua estrutura, características e comportamentos subjacentes. ')
-  
+
         st.subheader("Visão Geral do Conjunto de Dados:")
         ## URL do data frame de desenvolvimento
-        url_df_dev = "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/raw/dataset_kobe_dev.parquet"
+
+        url_df_dev  = "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/raw/dataset_kobe_prod.parquet"
 
         df_dev = pd.read_parquet(url_df_dev)
         st.subheader("Análise estatística descritiva")
@@ -63,23 +62,22 @@ def main():
             - 25% (Q1), 50% (Q2), 75% (Q3): Os percentis fornecem informações sobre a distribuição dos dados. Por exemplo, 25% das observações de game_event_id são menores que 102, 50% são menores que 244 (mediana) e 75% são menores que 355.
             - max: O valor máximo em cada coluna indica o maior valor observado para cada variável. Por exemplo, o valor máximo de game_event_id é 659.
         """
-    
+
         st.markdown(info_describe_anlise)
-     
+
         st.subheader("Valores Ausentes")
         info_valores_ausentes = """
             Com base na análise do resultado da tabela com a estatítica descritiva, podemos observar que todas as colunas têm a mesma contagem de observações, que é 24.271. 
             Isso indica que não há valores nulos ou faltantes neste conjunto de dados, pois todas as colunas possuem o mesmo número de observações não nulas.
         """
         st.markdown(info_valores_ausentes)
-        
-   
+
         st.write("Tabela com a estatística descritiva")
         st.write(df_dev.describe())
-        
+
         st.subheader("Tamanho do conjunto de dados inicial")
         st.text(f"Quantidade de linhas: {df_dev.shape[0]}, Quantidade de colunas: {df_dev.shape[1]}")
-       
+
         st.subheader("Conteúdo do arquivo colunas_iniciais.txt")
         colunas_iniciais_text = """
            Em resumo, o DataFrame fornecido contém informações sobre arremessos em jogos de basquete, com 24.271 entradas e 25 colunas.
@@ -92,9 +90,9 @@ def main():
         st.write("Tabela com a estatística descritiva") 
         url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_iniciais.txt"
         getTextGitHub(url) 
-       
+
         st.subheader("Conteúdo do arquivo colunas_data_filtered.txt")
-     #   url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_data_filtered.txt"
+        #   url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_data_filtered.txt"
         url= "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/colunas_data_filtered.txt"
         colunas_data_filtered_text = """
            O DataFrame contém informações detalhadas sobre arremessos em jogos de basquete, com 20.285 entradas e 6 colunas.
@@ -103,13 +101,12 @@ def main():
          """
         st.markdown(colunas_data_filtered_text)
         getTextGitHub(url) 
-     
-     
+
         # URL do DataFrame filtrado
         url_df_dev = "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/processed/data_filtered.parquet"
         df_filtred = pd.read_parquet(url_df_dev) 
         st.text(f"Quantidade de linhas: {df_filtred.shape[0]}, Quantidade de colunas: {df_filtred.shape[1]}")
-       
+
         st.subheader("Tabela com a estatística descritiva  (data_filtered.parquet)")
         data_filtered_text = """
            Analizando o resultado mostrado na tabela com a estatística descritiva do data set data_filtred       
@@ -122,7 +119,6 @@ def main():
           """
         st.markdown(data_filtered_text)
         st.write(df_filtred.describe()) 
-
 
         st.subheader("Faixa Dinâmica das variaveis")
         data_filtered_text = """
@@ -137,14 +133,13 @@ def main():
           - **Flag de Arremesso Convertido (shot_made_flag):** A média do indicador de arremesso bem-sucedido é de aproximadamente 1.0, o que sugere que todos os arremessos foram bem-sucedidos. Isso é apoiado pelo fato de que o valor mínimo é 1 e o valor máximo é 1, indicando que a coluna contém valores binários representando se um arremesso foi ou não bem-sucedido.
         """
         st.markdown(data_filtered_text)
-       
+
         url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/texto/faixa_dinamica.txt"
         getTextGitHub(url) 
- 
+
         boxplot_faixa_dinamica = f"{github_image_url}/boxplot_faixa_dinamica.png"
         st.image(boxplot_faixa_dinamica, caption='Gráfico Box Plot - Faixa Dinâmica das variaveis', use_column_width=True)
-      
-     
+
         st.subheader("Matriz de correlação") 
         matriz_text = """
           Uma matriz de correlação é uma tabela que mostra os coeficientes de correlação entre várias variáveis. Cada célula na tabela representa o coeficiente de correlação entre duas variáveis. O coeficiente de correlação quantifica o grau de relação linear entre duas variáveis e varia de -1 a 1. 
@@ -155,9 +150,7 @@ def main():
         st.markdown(matriz_text)
         boxplot_faixa_dinamica = f"{github_image_url}/matriz_correlacao.png"
         st.image(boxplot_faixa_dinamica, caption='Matriz de correlação', use_column_width=True)
-        
-        
-        
+
         st.subheader("Matriz de Dispersão")
         matriz_dispersao_text = """
          Essa matriz é útil para identificar padrões de correlação, tendências e possíveis associações entre as variáveis em um conjunto de dados. Cada gráfico de dispersão na matriz mostra como duas variáveis estão relacionadas entre si, permitindo uma rápida visualização das relações lineares ou não lineares.
@@ -170,8 +163,7 @@ def main():
         st.markdown(matriz_dispersao_text)             
         boxplot_faixa_dinamica = f"{github_image_url}/scatter_matrix.png"
         st.image(boxplot_faixa_dinamica, caption='Matriz de Dispersão', use_column_width=True)
-        
-        
+
         st.subheader("Histograma  das variaveis")
         histograma_text = """
             Um histograma é um gráfico de barras que representa a distribuição de uma variável quantitativa. Ele divide os dados em intervalos chamados de "bins" e conta quantas observações caem em cada bin. Essas contagens são então representadas graficamente como barras, onde a altura de cada barra indica a frequência ou a densidade das observações naquele bin. 
@@ -183,11 +175,23 @@ def main():
             - Simetria e assimetria: A simetria da distribuição pode ser observada visualmente no histograma. Distribuições simétricas terão barras distribuídas uniformemente em ambos os lados da média, enquanto distribuições assimétricas terão barras mais concentradas em um lado.
         """
         st.markdown(histograma_text)   
-        
+
         boxplot_faixa_dinamica = f"{github_image_url}/histograma.png"
         st.image(boxplot_faixa_dinamica, caption='Histograma  das variaveis', use_column_width=True) 
-      
-      
+
+        url_df_original  =  "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/raw/dataset_kobe_dev.parquet"
+        df_original= pd.read_parquet(url_df_original)
+        st.subheader("Data Frame original") 
+        st.write(df_original)
+
+        st.subheader("Data Frame Dev")
+        st.write(df_filtred)
+       
+        url_df_teste  = "https://github.com/wolfxweb/eng_machine_learning/raw/main/data/raw/dataset_kobe_prod.parquet"
+
+        df_teste= pd.read_parquet(url_df_teste)
+        st.subheader("Data Frame Filtrado Prod")
+        st.write(df_teste)
     # Aba Treinamento
     elif tab_selected == 'Treinamento':
         st.header('Treinamento')
@@ -197,7 +201,7 @@ def main():
     elif tab_selected == 'PipelineAplicacao':
         st.header('Pipeline de Aplicação')
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Pipeline de Aplicação.')
-        
+
     elif tab_selected == "Apresentação":
         st.header('Apresentação')
         st.write('Este é um exemplo de aplicação Streamlit com a aba de Pipeline de Aplicação.')
@@ -208,9 +212,7 @@ def main():
 
         # Exibir o iframe
         st.write(iframe_code, unsafe_allow_html=True)
-        
-        
-        
-        
+
+
 if __name__ == "__main__":
     main()

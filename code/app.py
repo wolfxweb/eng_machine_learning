@@ -55,8 +55,13 @@ def main():
         st.write("Tabela com a estatística descritiva.")
         st.write(df_dev.describe())
         
-        st.subheader("Tamanho do conjunto de dados")
-        st.write(df_dev.shape) 
+        st.subheader("Tamanho do conjunto de dados inicial")
+        st.write(f"Quantidade de linhas {df_dev.shape[0]}")
+        st.write(f"Quantidade de colunas {df_dev.shape[1]}") 
+        
+        
+        
+        
       #  st.write("Data frame antes do processamento")
      #   st.write(df_dev)
    #     st.write(df_dev)

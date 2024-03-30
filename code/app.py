@@ -5,6 +5,8 @@ import pandas as pd
 import pyarrow.parquet as pq
 import io
 import requests
+import nbformat
+from nbconvert import PythonExporter
 
 def getTextGitHub(url):
     # Realizar uma solicitação HTTP para obter o conteúdo do arquivo
@@ -17,6 +19,21 @@ def getTextGitHub(url):
     else:
         st.error(f"Erro ao obter o arquivo: {response.status_code}")
 
+def exibir_codigo_notebook(notebook_url):
+
+    # Baixar o conteúdo do arquivo Jupyter Notebook
+    response = requests.get(notebook_url)
+    notebook_content = response.text
+
+    # Carregar o notebook usando nbformat
+    notebook = nbformat.reads(notebook_content, as_version=4)
+
+    # Converter o notebook para código Python
+    python_exporter = PythonExporter()
+    python_code, _ = python_exporter.from_notebook_node(notebook)
+
+    # Exibir o código Python no Streamlit
+    st.code(python_code)
 
 def main():
     st.title('Dashboard')
@@ -191,7 +208,11 @@ def main():
 
         df_teste= pd.read_parquet(url_df_teste)
         st.subheader("Data Frame Filtrado Prod")
-        st.write(df_teste)
+        st.write(df_teste)  
+        
+        st.subheader("Notebook da Preparaçã dos dados")
+        notebook_url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/code/PreparacaoDados.ipynb"
+        exibir_codigo_notebook(notebook_url)
     # Aba Treinamento
     elif tab_selected == 'Treinamento':
         st.header('Treinamento')

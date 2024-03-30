@@ -54,26 +54,26 @@ def main():
         st.write(info_describe_anlise)
         st.write("Tabela com a estatística descritiva.")
         st.write(df_dev.describe())
-        st.write("Data frame antes do processamento")
-        st.write(df_dev)
+      #  st.write("Data frame antes do processamento")
+     #   st.write(df_dev)
    #     st.write(df_dev)
   
         ## URL do arquivo parquet no GitHub
-        url = 'https://github.com/wolfxweb/eng_machine_learning/raw/main/data/processed/data_filtered.parquet'
+     #   url = 'https://github.com/wolfxweb/eng_machine_learning/raw/main/data/processed/data_filtered.parquet'
 
         # Baixa o conteúdo do arquivo parquet
-        response = requests.get(url)
-        buffer = io.BytesIO(response.content)
+     #   response = requests.get(url)
+      #  buffer = io.BytesIO(response.content)
 
         # Lê o arquivo parquet em um DataFrame
-        df = pq.read_table(buffer).to_pandas()
+      #  df = pq.read_table(buffer).to_pandas()
 
         # Exibe o DataFrame
-        st.write(df)
+      #  st.write(df)
   
-        boxplot_faixa_dinamica = f"{url_grafico}/boxplot_faixa_dinamica.png"
+      #  boxplot_faixa_dinamica = f"{url_grafico}/boxplot_faixa_dinamica.png"
         # Exibir a imagem no Streamlit
-        st.image(boxplot_faixa_dinamica, caption='Exemplo de imagem na preparação de dados', use_column_width=True)
+      #  st.image(boxplot_faixa_dinamica, caption='Exemplo de imagem na preparação de dados', use_column_width=True)
 
     # Aba Treinamento
     elif tab_selected == 'Treinamento':

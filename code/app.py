@@ -41,7 +41,7 @@ def main():
             - 75º percentil (Q3): o valor abaixo do qual 75% dos dados caem em cada coluna.
             - Máximo: o valor máximo em cada coluna.
         """
-        st.write(info_describe)
+        st.text(info_describe)
         info_describe_anlise = """
             Analizando o resultado mostrado na tabela com a estatística descritiva
             - count: Todas as colunas têm 24.271 observações válidas, o que indica que não há valores nulos em nosso conjunto de dados.
@@ -51,7 +51,17 @@ def main():
             - 25% (Q1), 50% (Q2), 75% (Q3): Os percentis fornecem informações sobre a distribuição dos dados. Por exemplo, 25% das observações de game_event_id são menores que 102, 50% são menores que 244 (mediana) e 75% são menores que 355.
             - max: O valor máximo em cada coluna indica o maior valor observado para cada variável. Por exemplo, o valor máximo de game_event_id é 659.
         """
-        st.write(info_describe_anlise)
+    
+        st.text(info_describe_anlise)
+     
+        st.subheader("Valores Ausentes")
+        info_valores_ausentes = """
+            Com base na análise do resultado do método describe, podemos observar que todas as colunas têm a mesma contagem de observações, que é 24.271. 
+            Isso indica que não há valores nulos ou faltantes neste conjunto de dados, pois todas as colunas possuem o mesmo número de observações não nulas.
+        """
+        st.text(info_valores_ausentes)
+        
+   
         st.write("Tabela com a estatística descritiva.")
         st.write(df_dev.describe())
         

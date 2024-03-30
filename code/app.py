@@ -56,18 +56,20 @@ def main():
      
         st.subheader("Valores Ausentes")
         info_valores_ausentes = """
-            Com base na análise do resultado do método describe, podemos observar que todas as colunas têm a mesma contagem de observações, que é 24.271. 
+            Com base na análise do resultado da tabela com a estatítica descritiva, podemos observar que todas as colunas têm a mesma contagem de observações, que é 24.271. 
             Isso indica que não há valores nulos ou faltantes neste conjunto de dados, pois todas as colunas possuem o mesmo número de observações não nulas.
         """
         st.text(info_valores_ausentes)
         
    
-        st.write("Tabela com a estatística descritiva.")
+        st.write("Tabela com a estatística descritiva")
         st.write(df_dev.describe())
         
         st.subheader("Tamanho do conjunto de dados inicial")
         st.text(f"Quantidade de linhas: {df_dev.shape[0]}, Quantidade de colunas: {df_dev.shape[1]}")
-        
+       
+        st.write("Tipos de dados das colunas")
+        st.write(df_dev.info())
         
         
         

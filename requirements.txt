@@ -8,3 +8,4 @@ streamlit-extras
 pycaret
 mlflow
 seaborn
+nbconvert

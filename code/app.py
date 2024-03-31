@@ -6,7 +6,7 @@ import pyarrow.parquet as pq
 import io
 import requests
 import nbformat
-
+from nbconvert import PythonExporter
 
 def getTextGitHub(url):
     # Realizar uma solicitação HTTP para obter o conteúdo do arquivo

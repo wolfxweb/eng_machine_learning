@@ -35,6 +35,12 @@ def exibir_codigo_notebook(notebook_url):
     # Exibir o código Python no Streamlit
     st.code(python_code)
 
+
+def setTextImagem(info_describe,url_imagem, titulo ):
+    st.markdown(info_describe)
+      # Mostrar a imagem no Streamlit
+    st.image(f"https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/docs/artefatos/graficos/treinamento/{url_imagem}", caption=titulo)
+        
 def main():
     st.title('Dashboard')
     # url para pegar os artefatos que estão no github
@@ -216,8 +222,123 @@ def main():
     # Aba Treinamento
     elif tab_selected == 'Treinamento':
         st.header('Treinamento')
-        st.write('Este é um exemplo de aplicação Streamlit com a aba de Treinamento.')
+        info_describe = """
+            Treinamento de modelos de classificação (Regressão Logística e RandomForestClassifier) para prever se um arremesso de basquete foi bem-sucedido ou não. Aqui está uma explicação passo a passo do que está sendo feito:
+            - Importação de Bibliotecas: Importamos todas as bibliotecas necessárias, incluindo mlflow, pandas, scikit-learn, pycaret, matplotlib e numpy.
+            - Carregamento dos Dados: Carregamos os dados de treinamento e teste de arquivos parquet.
+            - Configuração do MLflow: Definimos o experimento no MLflow, verificamos se ele existe e, se não, criamos um novo. Configuramos também o repositório de rastreamento do MLflow para usar o SQLite.
+            - Treinamento dos Modelos: Usamos o PyCaret para configurar o ambiente de treinamento, definindo os dados de treinamento, o tamanho do conjunto de treinamento e o nome do experimento. Em seguida, criamos modelos de Regressão Logística e RandomForestClassifier e finalizamos o ambiente.
+            - Avaliação dos Modelos: Fazemos previsões usando os modelos treinados nos dados de teste e calculamos métricas de avaliação, como Log Loss e F1 Score, para ambos os modelos.
+            - Seleção do Melhor Modelo: Determinamos o melhor modelo com base no valor mais alto do F1 Score.
+            - Registro do Melhor Modelo: Registramos a versão do melhor modelo no MLflow.
+            - Plotagem das Métricas: Criamos um gráfico de barras mostrando o Log Loss e o F1 Score para cada modelo.
+            - Salvar o Gráfico: Salvamos o gráfico como um arquivo de imagem e registramos este artefato no MLflow.
 
+        """
+        st.markdown(info_describe)
+        info_describe = """
+            O processo de validação cruzada é uma técnica fundamental na avaliação de modelos de aprendizado de máquina e na seleção de hiperparâmetros. 
+            - Avaliação do desempenho do modelo: A validação cruzada fornece uma estimativa mais robusta do desempenho do modelo do que uma única divisão treino-teste. Isso ocorre porque ela divide os dados em diferentes conjuntos de treinamento e teste e calcula a métrica de avaliação (como precisão, recall, F1-score, etc.) média em várias iterações.
+            - Redução de variância: A validação cruzada ajuda a reduzir a variância na estimativa do desempenho do modelo. Isso ocorre porque ela utiliza múltiplas divisões dos dados, o que reduz a dependência do desempenho do modelo em uma única divisão específica dos dados.
+            - Seleção de modelo: A validação cruzada pode ser usada para comparar o desempenho de diferentes modelos. Ao aplicar a validação cruzada a vários modelos, podemos identificar qual modelo tem o melhor desempenho médio em dados não vistos.
+            - Seleção de hiperparâmetros: Além de selecionar o melhor modelo, a validação cruzada pode ser usada para ajustar os hiperparâmetros do modelo. Ao aplicar a validação cruzada com diferentes configurações de hiperparâmetros, podemos identificar os valores que produzem o melhor desempenho médio em dados não vistos.
+
+        """
+        st.markdown(info_describe)
+        info_describe = """
+           A curva de validação e a curva de aprendizado são ferramentas importantes para entender como o modelo foi treinado e para diagnosticar possíveis problemas durante o processo de treinamento. Aqui está como cada uma delas pode nos ajudar:
+           Curva de Validação:
+           - A curva de validação mostra como o desempenho do modelo varia em relação a diferentes valores de um hiperparâmetro.
+           - Ela nos permite identificar se o modelo está sofrendo de underfitting ou overfitting em relação a um hiperparâmetro específico.
+           - Se a curva de validação mostrar que o desempenho do modelo é baixo tanto no conjunto de treinamento quanto no conjunto de validação, isso pode indicar underfitting, sugerindo que o modelo é muito simples para capturar a complexidade dos dados.
+           - Se a curva de validação mostrar uma grande diferença entre o desempenho no conjunto de treinamento e no conjunto de validação, isso pode indicar overfitting, sugerindo que o modelo está memorizando os dados de treinamento em vez de aprender padrões gerais.
+           
+        """
+        st.markdown(info_describe)
+        info_describe = """
+           Curva de Aprendizado:
+           - A curva de aprendizado mostra como o desempenho do modelo varia em relação ao tamanho do conjunto de treinamento.
+           - Ela nos permite entender se o modelo está se beneficiando de mais dados de treinamento ou se está atingindo seu limite de desempenho.
+           - Se a curva de aprendizado mostrar que o desempenho do modelo continua a melhorar à medida que mais dados são adicionados, isso sugere que o modelo se beneficiaria de mais dados de treinamento.
+           - Se a curva de aprendizado mostrar que o desempenho do modelo estabiliza ou mesmo piora à medida que mais dados são adicionados, isso sugere que o modelo atingiu seu limite de desempenho e que adicionar mais dados pode não ser útil.
+        """
+        st.markdown(info_describe)
+        info_describe = """
+          Em resumo, a proximidade das curvas de aprendizado na base de treinamento e na base de validação sugere que o modelo está aprendendo bem com os dados de treinamento e generalizando efetivamente para novos dados, sem evidências claras de sobreajuste. Isso é geralmente considerado um resultado positivo.
+        """
+ 
+        setTextImagem(info_describe,"learning_curve.png", 'Curva de Aprendizado' )
+        
+        info_describe = """
+          Uma curva de validação com pontuação de 0,6 na base de validação sugere um problema de overfitting.
+          - Para melhorar esse resultado, algumas abordagens podem ser consideradas:
+          - Regularização: Se você estiver usando modelos como regressão linear ou árvores de decisão, pode considerar a aplicação de técnicas de regularização para controlar o overfitting.
+          - Redução da Complexidade do Modelo: Reduza a complexidade do modelo, por exemplo, reduzindo o número de recursos ou a profundidade das árvores de decisão, para tornar o modelo mais genérico e menos propenso a se ajustar demais aos dados de treinamento.
+          - Aumentar o Tamanho do Conjunto de Dados de Treinamento: Se possível, adquira mais dados de treinamento para que o modelo possa aprender com uma variedade maior de exemplos e padrões.
+          - Seleção de Características: Selecione apenas as características mais importantes e relevantes para o problema em questão, eliminando características irrelevantes ou redundantes que possam estar contribuindo para o overfitting.
+
+        """
+        st.markdown(info_describe)
+        
+        info_describe = """
+          Em resumo, a proximidade das curvas de aprendizado na base de treinamento e na base de validação sugere que o 
+          modelo está aprendendo bem com os dados de treinamento e generalizando efetivamente para novos dados, sem evidências claras de sobreajuste. 
+          Isso é geralmente considerado um resultado positivo.
+        """
+
+        setTextImagem(info_describe,"validation_curve.png", 'Curva de Validação' )
+        
+        
+        info_describe = """
+          A matriz de confusão é uma ferramenta que mostra a performance de um modelo de classificação.
+          Na primeira linha da matriz:
+          - O modelo previu corretamente 1382 instâncias da classe negativa (True Negative - TN), ou seja, quando a previsão foi "Não Cesta" e a verdade é "Não Cesta".
+          - O modelo previu incorretamente 737 instâncias da classe positiva (False Positive - FP), ou seja, quando a previsão foi "Não Cesta" mas a verdade é "Cesta".
+          Na segunda linha da matriz:
+          - O modelo previu incorretamente 974 instâncias da classe negativa (False Negative - FN), ou seja, quando a previsão foi "Cesta" mas a verdade é "Não Cesta".
+          - O modelo previu corretamente 963 instâncias da classe positiva (True Positive - TP), ou seja, quando a previsão foi "Cesta" e a verdade é "Cesta".
+
+        """
+  
+        setTextImagem(info_describe,"confusion_matrix_lr.png", 'Matriz de Confusão - Logistic Regression' )
+        
+        info_describe = """
+          Matriz de Confusão - RandomForestClassifier
+          Na primeira linha da matriz:
+          - O modelo previu corretamente 1221 instâncias da classe negativa (True Negative - TN), ou seja, quando a previsão foi "Não Cesta" e a verdade é "Não Cesta".
+          - O modelo previu incorretamente 889 instâncias da classe positiva (False Positive - FP), ou seja, quando a previsão foi "Não Cesta" mas a verdade é "Cesta".
+          Na segunda linha da matriz:
+          - O modelo previu incorretamente 892 instâncias da classe negativa (False Negative - FN), ou seja, quando a previsão foi "Cesta" mas a verdade é "Não Cesta".
+          - O modelo previu corretamente 1045 instâncias da classe positiva (True Positive - TP), ou seja, quando a previsão foi "Cesta" e a verdade é "Cesta".
+
+        """ 
+        setTextImagem(info_describe, "confusion_matrix_rf.png", 'Matriz de Confusão - RandomForestClassifier' )
+        
+        info_describe = """
+         No geral, um valor próximo de 0.6 indica que o modelo está tendo um desempenho moderado, mas ainda há espaço para melhorias. Dependendo do contexto do problema e dos requisitos específicos, pode ser necessário ajustar o modelo, considerar diferentes algoritmos ou explorar mais os dados para melhorar o desempenho do modelo
+       
+        """ 
+        setTextImagem(info_describe, "classification_report_lr.png", 'Classification Report Regreção Logistica' ) 
+        
+        info_describe = """
+         Quando a precisão, recall e F1-score ficam próximos de 0.55, isso indica que o modelo está tendo um desempenho moderado, mas pode ser aprimorado. Vamos interpretar cada métrica:
+         - Precisão (Precision): A precisão representa a proporção de exemplos classificados como positivos que são realmente positivos. Uma precisão de cerca de 0.55 significa que aproximadamente 55% dos exemplos classificados como positivos são realmente positivos. Em outras palavras, das previsões de "Cesta", cerca de 55% são corretas.
+         - Revocação (Recall): A revocação (também conhecida como sensibilidade) representa a proporção de exemplos positivos que foram corretamente identificados pelo modelo. Aqui, cerca de 55% dos exemplos positivos foram corretamente identificados pelo modelo. Isso significa que o modelo está capturando aproximadamente 55% dos exemplos verdadeiros de "Cesta".
+         - F1 Score: O F1-score é a média harmônica entre precisão e revocação. Ele fornece um equilíbrio entre essas duas métricas. Um F1-score de cerca de 0.55 indica um equilíbrio razoável entre a capacidade do modelo de fazer previsões corretas (precisão) e de capturar exemplos positivos (revocação).
+
+        """ 
+        setTextImagem(info_describe, "classification_report_rf.png", 'Classification Report  RandomForestClassifier' ) 
+        
+        info_describe = """
+           Em geral, uma AUC entre 0,5 e 0,7 é considerada aceitável, mas ainda há margem para melhorias no desempenho do modelo. Uma AUC maior que 0,7 é geralmente considerada boa, enquanto valores próximos de 1 indicam um excelente desempenho na classificação.
+        """ 
+        setTextImagem(info_describe, "roc_curve.png", 'Curva ROC' ) 
+        
+        st.subheader("Notebook Treinamento")
+        notebook_url = "https://raw.githubusercontent.com/wolfxweb/eng_machine_learning/main/code/Treinamento.ipynb"
+        exibir_codigo_notebook(notebook_url) 
+        
+        
     # Aba PipelineAplicacao
     elif tab_selected == 'PipelineAplicacao':
         st.header('Pipeline de Aplicação')

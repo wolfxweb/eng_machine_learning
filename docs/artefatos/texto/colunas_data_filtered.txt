@@ -1,5 +1,5 @@
 <class 'pandas.core.frame.DataFrame'>
-Index: 20285 entries, 1 to 30696
+Index: 20285 entries, 1 to 24270
 Data columns (total 7 columns):
  #   Column             Non-Null Count  Dtype  
 ---  ------             --------------  -----  
